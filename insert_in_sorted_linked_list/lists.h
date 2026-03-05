@@ -1,41 +1,26 @@
-#include "lists.h"
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef LISTS_H
+#define LISTS_H
+
+#include <stddef.h>
+
 /**
- * add_node - the function create a new head on a linked list
+ * struct listint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
  *
- * @head: the head of the linked list
- * @str: the string of the new head
- *
- * Return: the new head node
+ * Description: singly linked list node structure
+ * for Holberton project
  */
-
-listint_t *insert_node(listint_t **head, int number)
+typedef struct listint_s
 {
-    listint_t *new;
-    listint_t *current;
+    int n;
+    struct listint_s *next;
+} listint_t;
 
-    new = malloc(sizeof(listint_t));
-    if (new == NULL)
-        return (NULL);
+size_t print_listint(const listint_t *h);
+listint_t *add_nodeint_end(listint_t **head, const int n);
+void free_listint(listint_t *head);
 
-    new->n = number;
+listint_t *insert_node(listint_t **head, int number);
 
-    if (*head == NULL || (*head)->n >= number)
-    {
-        new->next = *head;
-        *head = new;
-        return (new);
-    }
-
-    current = *head;
-
-    while (current->next != NULL && current->next->n < number)
-        current = current->next;
-
-    new->next = current->next;
-    current->next = new;
-
-    return (new);
-}
+#endif /* LISTS_H */

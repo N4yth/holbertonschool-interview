@@ -1,5 +1,7 @@
 #include "lists.h"
+#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 /**
  * add_node - the function create a new head on a linked list
  *
@@ -11,29 +13,29 @@
 
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *new_node;
-	listint_t *current;
+    listint_t *new;
+    listint_t *current;
 
-	new_node = malloc(sizeof(listint_t));
-	if (new_node == NULL)
-		return (NULL);
+    new = malloc(sizeof(listint_t));
+    if (new == NULL)
+        return (NULL);
 
-	new_node->n = number;
+    new->n = number;
 
-	if (*head == NULL || (*head)->n >= number)
-	{
-		new_node->next = *head;
-		*head = new_node;
-		return (new_node);
-	}
+    if (*head == NULL || (*head)->n >= number)
+    {
+        new->next = *head;
+        *head = new;
+        return (new);
+    }
 
-	current = *head;
+    current = *head;
 
-	while (current->next != NULL && current->next->n < number)
-		current = current->next;
+    while (current->next != NULL && current->next->n < number)
+        current = current->next;
 
-	new_node->next = current->next;
-	current->next = new_node;
+    new->next = current->next;
+    current->next = new;
 
-	return (new_node);
+    return (new);
 }
