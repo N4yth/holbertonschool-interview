@@ -12,14 +12,17 @@ heap_t *heap_insert(heap_t **root, int value)
 {
 	heap_t *new, *parent, *queue[1024];
 	int front = 0, back = 0, tmp;
+
 	if (!root)
 		return (NULL);
-	if (*root == NULL) {
+	if (*root == NULL) 
+	{
 		*root = binary_tree_node(NULL, value);
 		return (*root);
 	}
 	queue[back++] = *root;
-	while (front < back) {
+	while (front < back)
+	{
 		parent = queue[front++];
 
 		if (!parent->left || !parent->right)
@@ -35,7 +38,8 @@ heap_t *heap_insert(heap_t **root, int value)
 		parent->left = new;
 	else
 		parent->right = new;
-	while (new->parent && new->n > new->parent->n) {
+	while (new->parent && new->n > new->parent->n)
+	{
 		tmp = new->n;
 		new->n = new->parent->n;
 		new->parent->n = tmp;
