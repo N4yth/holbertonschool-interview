@@ -3,6 +3,7 @@
 code that return the minimum number of operations to reach nH
 """
 
+
 def minOperations(n):
     """return the minimum number of operations to reach nH"""
     if n <= 1:
