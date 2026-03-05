@@ -1,31 +1,26 @@
-#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include "binary_trees.h"
+
 /**
- * add_dnodeint - the function create a new head of a doubly linked list
+ * binary_tree_node - creates a binary tree node
+ * @parent: pointer to the parent node
+ * @value: value to store in the node
  *
- * @head: the head of the doubly linked list
- * @n: the int of the new head
- *
- * Return: the new head of the doubly linked list
+ * Return: pointer to the new node or NULL if it fails
  */
-dlistint_t *add_dnodeint(dlistint_t **head, const int n)
+
+binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
-	dlistint_t *new_head = malloc(sizeof(dlistint_t));
+    binary_tree_t *new_node;
 
-	if (new_head == NULL)
-	{
-		return (NULL);
-	}
+    new_node = malloc(sizeof(binary_tree_t));
+    if (new_node == NULL)
+        return (NULL);
 
-	new_head->n = n;
-	new_head->prev = NULL;
-	new_head->next = *head;
+    new_node->n = value;
+    new_node->parent = parent;
+    new_node->left = NULL;
+    new_node->right = NULL;
 
-	if (*head != NULL)
-	{
-		(*head)->prev = new_head;
-	}
-	*head = new_head;
-	return (*head);
+    return (new_node);
 }
