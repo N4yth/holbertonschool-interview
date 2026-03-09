@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+script that reads stdin line by line and computes metrics.
+"""
+
 import sys
 
 VALID_CODES = ["200", "301", "400", "401", "403", "404", "405", "500"]
