@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include "sandpiles.h"
 
+/**
+ * print_grid - print the sand pile
+ *
+ * @grid: the sand pile
+ *
+ * Return: nothing
+ */
 static void print_grid(int grid[3][3])
 {
 	int row, col;
@@ -17,6 +24,13 @@ static void print_grid(int grid[3][3])
 	}
 }
 
+/**
+ * is_stable - test if a sandpile is stable
+ *
+ * @grid: the sand pile
+ *
+ * Return: true of false
+ */
 static int is_stable(int grid[3][3])
 {
 	int row, col;
@@ -28,6 +42,14 @@ static int is_stable(int grid[3][3])
 	return (1);
 }
 
+/**
+ * sandpiles_sum - sum 2 pile of sand
+ *
+ * @grid1: the first sand pile
+ * @grid2: the second sand pile
+ *
+ * Return: nothing
+ */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int row, col;
