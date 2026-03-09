@@ -10,7 +10,7 @@
  *
  * Return: true or false
  */
-int is_palindrome(unsigned long n);
+int is_palindrome(unsigned long n)
 {
 	unsigned long temp = n;
 	unsigned long reversed = 0;
