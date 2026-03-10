@@ -3,6 +3,7 @@
 Main file for testing
 """
 
+
 def validUTF8(data):
     """
     test if data is utf-8 encodage
