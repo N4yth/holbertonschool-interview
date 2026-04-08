@@ -1,5 +1,12 @@
 #include "menger.h"
 
+/**
+ * menger - function that draws a 2D Menger Sponge
+ *
+ * @level: the number of level
+ *
+ * Return: NOTHING
+ */
 void menger(int level)
 {
 	int x;
