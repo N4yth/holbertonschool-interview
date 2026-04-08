@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdio.h>
+#include "slide_line.h"
 
 void go_right(int *line, size_t size)
 {
