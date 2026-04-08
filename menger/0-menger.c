@@ -28,9 +28,9 @@ void menger(int level)
 					ty /= 3;
 				}
 				if (hole)
-					printf (" ");
+					printf(" ");
 				else
-					printf ("#");
+					printf("#");
 			}
 			printf("\n");
 		}
