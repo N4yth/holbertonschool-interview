@@ -27,6 +27,8 @@ static avl_t *build_avl(int *array, int start, int end)
     mid = (start + end) / 2;
 
     root = create_node(array[mid]);
+    if (!root)
+        return NULL;
 
     root->left = build_avl(array, start, mid - 1);
     if (root->left)
