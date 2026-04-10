@@ -4,6 +4,8 @@
  * create_node - create a node
  *
  * @value: Value to put
+ *
+ * Return: the node on success, NULL on failure
  */
 avl_t *create_node(int value)
 {
@@ -25,7 +27,9 @@ avl_t *create_node(int value)
  *
  * @array: The array to be transform
  * @start: start of the array to AVL
- * @end: end of the array to AVL
+ * @end: end of the array to AVL$
+ *
+ * Return: the head on success, NULL on failure
  */
 static avl_t *build_avl(int *array, int start, int end)
 {
@@ -57,6 +61,8 @@ static avl_t *build_avl(int *array, int start, int end)
  *
  * @array: The array to be Sorted
  * @size: Size of the array
+ *
+ * Return: the head on success, NULL on failure
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
