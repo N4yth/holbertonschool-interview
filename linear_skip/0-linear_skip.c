@@ -2,7 +2,8 @@
 #include "search.h"
 
 /**
-* linear_skip - function that found a value in a linked list with express methode
+* linear_skip - function that found a value in a linked list with 
+* express methode
 *
 * @list: Pointer to the head
 * @value: value to found
