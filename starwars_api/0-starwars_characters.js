@@ -12,7 +12,7 @@ request(url, (err, response, body) => {
 
   const characters = datafilm.characters;
 
-  function printCharacter(i) {
+  function printCharacter (i) {
     if (i >= characters.length) return;
 
     request(characters[i], (err, res, body) => {
