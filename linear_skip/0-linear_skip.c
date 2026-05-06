@@ -1,49 +1,55 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-
 #include "search.h"
-
-size_t skiplist_size(const skiplist_t *list)
-{
-    size_t count = 0;
-
-    while (list != NULL)
-    {
-        count++;
-        list = list->next;
-    }
-
-    return count;
-}
-
 
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-    int interval = 0;
-    size_t width;
+    skiplist_t *prev = list;
 
-    width = skiplist_size(list);
+    if (!list)
+        return (NULL);
 
-    interval = sqrt(width);
-    while (list->express != NULL)
+    while (list->express)
     {
-        if(list->express->n == value)
-            return(list->express);
-        else if(list->express->n < value)
-            list = list->express;
-        else
-        {
-            for (int i = 0 ; i < interval ; i++)
-            {
-                if(list->next->n == value)
-                    return(list->next);
-                else
-                    list = list->next;
-            }
-            return(NULL);
-        }
-    }
-    return(NULL);
-}
+        printf("Value checked at index [%lu] = [%d]\n",
+               list->express->index, list->express->n);
 
+        if (list->express->n >= value)
+            break;
+
+        list = list->express;
+    }
+
+    prev = list;
+
+    if (list->express)
+    {
+        printf("Value found between indexes [%lu] and [%lu]\n",
+               list->index, list->express->index);
+        list = list->express;
+    }
+    else
+    {
+        skiplist_t *tail = list;
+
+        while (tail->next)
+            tail = tail->next;
+
+        printf("Value found between indexes [%lu] and [%lu]\n",
+               list->index, tail->index);
+
+        list = tail;
+    }
+
+    while (prev && prev->index <= list->index)
+    {
+        printf("Value checked at index [%lu] = [%d]\n",
+               prev->index, prev->n);
+
+        if (prev->n == value)
+            return (prev);
+
+        prev = prev->next;
+    }
+
+    return (NULL);
+}
