@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include "search.h"
 
+/**
+* linear_skip - function that found a value in a linked list with express methode
+*
+* @list: Pointer to the head
+* @value: value to found
+*
+* Return: Pointer to the node with the value or NULL if not found
+*/
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *prev = list;
