@@ -24,7 +24,7 @@ void swap(int *a, int *b)
 void sift_down(int *array, size_t size, size_t root, size_t end)
 {
 	size_t child, swap_idx;
-    
+
 	while ((root * 2 + 1) <= end)
 	{
 		child = root * 2 + 1;
@@ -35,7 +35,7 @@ void sift_down(int *array, size_t size, size_t root, size_t end)
 			array[swap_idx] < array[child + 1])
 			swap_idx = child + 1;
 		if (swap_idx == root)
-		    return;
+			return;
 		swap(&array[root], &array[swap_idx]);
 		print_array(array, size);
 		root = swap_idx;
