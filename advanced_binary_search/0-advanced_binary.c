@@ -24,50 +24,57 @@ void print_array(const int *array, size_t size)
 }
 
 /**
- * advanced_binary - Searches for the FIRST occurrence of a value
- *                   in a sorted array of integers using recursion
+ * advanced_binary_recursive - Recursive helper for advanced_binary
+ * @array: Pointer to the first element of the subarray
+ * @left: Left (start) index relative to the original array
+ * @size: Number of elements in the current subarray
+ * @value: Value to search for
  *
- * @array: Pointer to the first element of the array to search in
- * @size: Number of elements in @array
- * @value: The value to search for
- *
- * Return: Index of the first occurrence of @value, or -1 if not found
+ * Return: Index of the first occurrence of value, or -1 if not found
  */
-int advanced_binary(int *array, size_t size, int value)
+static int advanced_binary_recursive(int *array, size_t left, size_t size, int value)
 {
-    int result;
     size_t mid;
 
-    if (array == NULL || size == 0)
+    if (!array || size == 0)
         return (-1);
 
     print_array(array, size);
 
-    /* Base case: single element */
-    if (size == 1)
-        return (array[0] == value ? 0 : -1);
+    mid = (size - 1) / 2;
 
-    mid = size / 2;
-
+    /* If value found at mid, check if it's the FIRST occurrence */
     if (array[mid] == value)
     {
-        if (mid > 0 && array[mid - 1] == value)
-        {
-            result = advanced_binary(array, mid, value);
-            return (result == -1 ? (int)mid : result);
-        }
-        result = advanced_binary(array + mid, size - mid, value);
-        return ((int)mid + (result == -1 ? 0 : result));
+        /* If it's the first element or the previous one differs, we found it */
+        if (mid == 0 || array[mid - 1] != value)
+            return ((int)(left + mid));
+        /* Otherwise, search in the left half (including mid) */
+        return (advanced_binary_recursive(array, left, mid + 1, value));
     }
 
-	if (array[0] == value)
-		return (-1);
-
     if (array[mid] > value)
-        return (advanced_binary(array, mid, value));
+        /* Search left half */
+        return (advanced_binary_recursive(array, left, mid, value));
 
-    result = advanced_binary(array + mid + 1, size - mid - 1, value);
-    if (result == -1)
+    /* Search right half */
+    return (advanced_binary_recursive(array + mid + 1, left + mid + 1,
+                                      size - mid - 1, value));
+}
+
+/**
+ * advanced_binary - Searches for a value in a sorted array of integers
+ *                   and returns the index of the FIRST occurrence
+ * @array: Pointer to the first element of the array to search in
+ * @size: Number of elements in array
+ * @value: Value to search for
+ *
+ * Return: Index of the first occurrence of value, or -1 if not found
+ */
+int advanced_binary(int *array, size_t size, int value)
+{
+    if (!array || size == 0)
         return (-1);
-    return ((int)mid + 1 + result);
+
+    return (advanced_binary_recursive(array, 0, size, value));
 }
