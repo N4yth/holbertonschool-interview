@@ -24,7 +24,7 @@ void print_array(const int *array, size_t size)
 }
 
 /**
- * advanced_binary_recursive - Recursive helper for advanced_binary
+ * recursive - Recursive helper for advanced_binary
  * @array: Pointer to the first element of the subarray
  * @left: Left (start) index relative to the original array
  * @size: Number of elements in the current subarray
@@ -32,29 +32,29 @@ void print_array(const int *array, size_t size)
  *
  * Return: Index of the first occurrence of value, or -1 if not found
  */
-static int advanced_binary_recursive(int *array, size_t left, size_t size, int value)
+int recursive(int *array, int left, int right, int value)
 {
-    size_t mid;
+    int mid;
 
-    if (!array || size == 0)
+    if (left > right)
         return (-1);
 
-    print_array(array, size);
+    print_array(array + left, right - left + 1);
 
-    mid = size / 2;
+    mid = left + (right - left) / 2;
 
     if (array[mid] == value)
     {
-        if (mid == 0 || array[mid - 1] != value)
-            return ((int)(left + mid));
-        return (advanced_binary_recursive(array, left, mid + 1, value));
+        if (mid == left || array[mid - 1] != value)
+            return (mid);
+
+        return (recursive(array, left, mid, value));
     }
 
-    if (array[mid] > value)
-        return (advanced_binary_recursive(array, left, mid, value));
+    if (array[mid] < value)
+        return (recursive(array, mid + 1, right, value));
 
-    return (advanced_binary_recursive(array + mid + 1, left + mid + 1,
-                                      size - mid - 1, value));
+    return (recursive(array, left, mid, value));
 }
 
 /**
@@ -68,8 +68,8 @@ static int advanced_binary_recursive(int *array, size_t left, size_t size, int v
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-    if (!array || size == 0)
+    if (array == NULL)
         return (-1);
 
-    return (advanced_binary_recursive(array, 0, size, value));
+    return (recursive(array, 0, size - 1, value));
 }
