@@ -42,7 +42,7 @@ int advanced_binary(int *array, size_t size, int value)
 		return (-1);
 	print_array(array, size);
 
-	mid = (size - 1) / 2;
+	mid = size / 2;
 
 	if (array[mid] == value)
 	{
