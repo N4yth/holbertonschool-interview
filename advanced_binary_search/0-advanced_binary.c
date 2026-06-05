@@ -34,27 +34,27 @@ void print_array(const int *array, size_t size)
  */
 int recursive(int *array, int left, int right, int value)
 {
-    int mid;
+	int mid;
 
-    if (left > right)
-        return (-1);
+	if (left > right)
+		return (-1);
 
-    print_array(array + left, right - left + 1);
+	print_array(array + left, right - left + 1);
 
-    mid = left + (right - left) / 2;
+	mid = left + (right - left) / 2;
 
-    if (array[mid] == value)
-    {
-        if (mid == left || array[mid - 1] != value)
-            return (mid);
+	if (array[mid] == value)
+	{
+		if (mid == left || array[mid - 1] != value)
+			return (mid);
 
-        return (recursive(array, left, mid, value));
-    }
+		return (recursive(array, left, mid, value));
+	}
 
-    if (array[mid] < value)
-        return (recursive(array, mid + 1, right, value));
+	if (array[mid] < value)
+		return (recursive(array, mid + 1, right, value));
 
-    return (recursive(array, left, mid, value));
+	return (recursive(array, left, mid, value));
 }
 
 /**
@@ -68,8 +68,8 @@ int recursive(int *array, int left, int right, int value)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-    if (array == NULL)
-        return (-1);
+	if (array == NULL)
+		return (-1);
 
-    return (recursive(array, 0, size - 1, value));
+	return (recursive(array, 0, size - 1, value));
 }
