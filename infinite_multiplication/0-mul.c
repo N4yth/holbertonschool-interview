@@ -56,6 +56,60 @@ int is_digit(char *s)
 }
 
 /**
+ * print_result - print the result
+ * @result: string
+ * @len: string
+ *
+ * Return: nothing
+*/
+void print_result(int *result, int len)
+{
+	int i = 0, started = 0;
+
+	while (i < len)
+	{
+		if (result[i] != 0)
+			started = 1;
+		if (started)
+			_putchar(result[i] + '0');
+		i++;
+	}
+	if (!started)
+		_putchar('0');
+	_putchar('\n');
+}
+
+/**
+ * multiply - do the multiplication
+ * @num1: the first number
+ * @num2: the second number
+ * @result: the result
+ * @len1: the length of the first number
+ * @len2: the length of the second number
+ *
+ * Return: nothing
+*/
+void multiply(char *num1, char *num2, int *result, int len1, int len2)
+{
+	int i, j, n1, n2, carry;
+
+	for (i = len1 - 1; i >= 0; i--)
+	{
+		carry = 0;
+		n1 = num1[i] - '0';
+
+		for (j = len2 - 1; j >= 0; j--)
+		{
+			n2 = num2[j] - '0';
+			carry += result[i + j + 1] + (n1 * n2);
+			result[i + j + 1] = carry % 10;
+			carry /= 10;
+		}
+		result[i] += carry;
+	}
+}
+
+/**
  * main - multiplies two positive numbers
  * @argc: argument count
  * @argv: argument vector
@@ -65,8 +119,7 @@ int is_digit(char *s)
 int main(int argc, char *argv[])
 {
 	char *num1, *num2;
-	int len1, len2, len, i, j, n1, n2, carry, *result;
-	int started = 0;
+	int len1, len2, len, *result, i;
 
 	if (argc != 3)
 		print_error();
@@ -88,36 +141,8 @@ int main(int argc, char *argv[])
 	for (i = 0; i < len; i++)
 		result[i] = 0;
 
-	for (i = len1 - 1; i >= 0; i--)
-	{
-		carry = 0;
-		n1 = num1[i] - '0';
-
-		for (j = len2 - 1; j >= 0; j--)
-		{
-			n2 = num2[j] - '0';
-
-			carry = result[i + j + 1] + (n1 * n2) + carry;
-			result[i + j + 1] = carry % 10;
-			carry /= 10;
-		}
-
-		result[i] += carry;
-	}
-
-	for (i = 0; i < len; i++)
-	{
-		if (result[i] != 0)
-			started = 1;
-
-		if (started)
-			_putchar(result[i] + '0');
-	}
-
-	if (!started)
-		_putchar('0');
-
-	_putchar('\n');
+	multiply(num1, num2, result, len1, len2);
+	print_result(result, len);
 
 	free(result);
 	return (0);
