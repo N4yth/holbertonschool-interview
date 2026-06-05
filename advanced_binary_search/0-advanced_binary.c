@@ -41,23 +41,18 @@ static int advanced_binary_recursive(int *array, size_t left, size_t size, int v
 
     print_array(array, size);
 
-    mid = (size - 1) / 2;
+    mid = size / 2;
 
-    /* If value found at mid, check if it's the FIRST occurrence */
     if (array[mid] == value)
     {
-        /* If it's the first element or the previous one differs, we found it */
         if (mid == 0 || array[mid - 1] != value)
             return ((int)(left + mid));
-        /* Otherwise, search in the left half (including mid) */
         return (advanced_binary_recursive(array, left, mid + 1, value));
     }
 
     if (array[mid] > value)
-        /* Search left half */
         return (advanced_binary_recursive(array, left, mid, value));
 
-    /* Search right half */
     return (advanced_binary_recursive(array + mid + 1, left + mid + 1,
                                       size - mid - 1, value));
 }
