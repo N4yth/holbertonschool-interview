@@ -35,26 +35,39 @@ void print_array(const int *array, size_t size)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	int result;
-	size_t mid;
+    int result;
+    size_t mid;
 
-	if (array == NULL || size == 0)
+    if (array == NULL || size == 0)
+        return (-1);
+
+    print_array(array, size);
+
+    /* Base case: single element */
+    if (size == 1)
+        return (array[0] == value ? 0 : -1);
+
+    mid = size / 2;
+
+    if (array[mid] == value)
+    {
+        if (mid > 0 && array[mid - 1] == value)
+        {
+            result = advanced_binary(array, mid, value);
+            return (result == -1 ? (int)mid : result);
+        }
+        result = advanced_binary(array + mid, size - mid, value);
+        return ((int)mid + (result == -1 ? 0 : result));
+    }
+
+	if (array[0] == value)
 		return (-1);
-	print_array(array, size);
 
-	mid = size / 2;
+    if (array[mid] > value)
+        return (advanced_binary(array, mid, value));
 
-	if (array[mid] == value)
-	{
-		result = advanced_binary(array, mid, value);
-		return (result == -1 ? (int)mid : result);
-	}
-
-	if (array[mid] > value)
-		return (advanced_binary(array, mid, value));
-
-	result = advanced_binary(array + mid + 1, size - mid - 1, value);
-	if (result == -1)
-		return (-1);
-	return ((int)mid + 1 + result);
+    result = advanced_binary(array + mid + 1, size - mid - 1, value);
+    if (result == -1)
+        return (-1);
+    return ((int)mid + 1 + result);
 }
