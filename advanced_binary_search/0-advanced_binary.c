@@ -29,7 +29,7 @@ void print_array(const int *array, size_t size)
  * recursive - Recursive helper for advanced_binary
  * @array: Pointer to the first element of the subarray
  * @left: Left (start) index relative to the original array
- * @size: Number of elements in the current subarray
+ * @right: Right (start) index relative to the original array
  * @value: Value to search for
  *
  * Return: Index of the first occurrence of value, or -1 if not found
