@@ -16,7 +16,7 @@ static void swap_int(int *a, int *b)
 }
 
 /**
- * heap_extract - extracts root of max binary heap
+ * heapify_down - extracts root of max binary heap
  * @node: double pointer to root node
  *
  * Return: Nothing
@@ -63,7 +63,6 @@ int heap_extract(heap_t **root)
 		return (0);
 
 	value = (*root)->n;
-
 	if (!(*root)->left && !(*root)->right)
 	{
 		free(*root);
@@ -71,7 +70,6 @@ int heap_extract(heap_t **root)
 		return (value);
 	}
 	queue[size++] = *root;
-
 	while (i < size)
 	{
 		tmp = queue[i++];
@@ -81,19 +79,14 @@ int heap_extract(heap_t **root)
 		if (tmp->right)
 			queue[size++] = tmp->right;
 	}
-
 	last = queue[size - 1];
-
 	(*root)->n = last->n;
 
 	if (last->parent->left == last)
 		last->parent->left = NULL;
 	else
 		last->parent->right = NULL;
-
 	free(last);
-
 	heapify_down(*root);
-
 	return (value);
 }
