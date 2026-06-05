@@ -28,8 +28,6 @@ def count_words(subreddit, word_list, after=None, counts=None):
         params=params,
         allow_redirects=False
     )
-    print(response.status_code)
-    print(response.text[:500])
     if response.status_code != 200:
         return
 
