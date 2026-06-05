@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * heapify_down - print error
+ * print_error - print error
  *
  * Return: Nothing
 */
