@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+"""
+module that turn a matrix 90°
+"""
 
 def rotate_2d_matrix(matrix):
+    """function that turn a matrix 90°"""
     n = len(matrix)
 
     for stage in range(n // 2):
