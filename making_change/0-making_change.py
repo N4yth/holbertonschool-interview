@@ -12,7 +12,7 @@ def makeChange(coins, total):
     result = 0
 
     if (total < 0):
-        return -1
+        return 0
     coins.sort(reverse=True)
     for i in range(len(coins)):
         while (coins[i] < total and result + coins[i] <= total):
