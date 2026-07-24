@@ -8,16 +8,14 @@ def makeChange(coins, total):
     """
     Main fonction to make change
     """
-    nb_coin = 0
-    result = 0
-
-    if (total < 0):
+    if total <= 0:
         return 0
-    coins.sort(reverse=True)
-    for i in range(len(coins)):
-        while (coins[i] < total and result + coins[i] <= total):
-            result += coins[i]
-            nb_coin += 1
-        if (result == total):
-            return nb_coin
-    return -1
+    dp = [float('inf')] * (total + 1)
+    dp[0] = 0
+
+    for i in range(1, total + 1):
+        for coin in coins:
+            if coin <= i:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+
+    return dp[total] if dp[total] != float('inf') else -1
