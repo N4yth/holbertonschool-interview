@@ -10,6 +10,9 @@ def makeChange(coins, total):
     """
     nb_coin = 0
     result = 0
+
+    if (total < 0):
+        return -1
     coins.sort(reverse=True)
     for i in range(len(coins)):
         while (coins[i] < total and result + coins[i] <= total):
