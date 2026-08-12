@@ -24,7 +24,7 @@ void radix_sort(int *array, size_t size)
 	if (output == NULL)
 		return;
 	max = array[0];
-	for (i = 1; i < (int)size; i++) 
+	for (i = 1; i < (int)size; i++)
 	{
 		if (array[i] > max)
 			max = array[i];
@@ -33,7 +33,7 @@ void radix_sort(int *array, size_t size)
 	{
 		for (i = 0; i < 10; i++)
 			count[i] = 0;
-		for (i = 0; i < (int)size; i++) 
+		for (i = 0; i < (int)size; i++)
 		{
 			digit = (array[i] / exp) % 10;
 			count[digit]++;
