@@ -11,7 +11,7 @@
  * @max: Upper bound for valid values in this subtree
  *
  * Return: The height of the subtree if it is a AVL subtree or -1 if it is not
- * 
+ *
  */
 static int avl_helper(const binary_tree_t *tree, int min, int max)
 {
