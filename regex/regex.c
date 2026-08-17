@@ -4,7 +4,7 @@
  * regex_match - Check whether a string matche a given pattern
  *
  * @str: The string to scan
- * @pattern: The pattern to check 
+ * @pattern: The pattern to check
  *
  * Return: 1 if the pattern matche the str otherwise 0
  */
